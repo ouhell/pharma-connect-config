@@ -9,7 +9,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
 jwt:
   secret_key: PxgfrbwwEfYXAf26-tZxhbXfez0ycDWhkPuOdmYGTqU
   issuer: PharmaConnect
