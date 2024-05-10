@@ -40,7 +40,7 @@ management:
       # Zipkin
   tracing:
     sampling:
-      probability: 0.2
+      probability: 1.0
 
 # Eureka
 eureka:
