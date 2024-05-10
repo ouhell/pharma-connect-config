@@ -2,30 +2,30 @@ name: pharma-connect-compose
 version: "1"
 services:
   postgres:
-    container_name: pharma-connect-db
-    image: postgres
+    container_name: pharma-db
+    image: pharma-postgres
     networks:
-      - pharma-net
+      - postgres-net
     volumes:
-      - postgres:/data/postgres
+      - pharma-db:/data/postgres
     environment:
-      POSTGRES_USER: auth-admin
-      POSTGRES_PASSWORD: auth-password
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     ports:
       - "5432:5432"
     restart: unless-stopped
   pgadmin:
-    container_name: auth-db-admin
+    container_name: db-admin
     image: dpage/pgadmin4
     networks:
-      - pharma-net
+      - postgres-net
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pdadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: "False"
     volumes:
-      - pgadmin:/var/lib/pgadmin
+      - pgadmin-auth:/var/lib/pgadmin-auth
     ports:
       - "5050:80"
     restart: unless-stopped
@@ -36,9 +36,12 @@ services:
       - 9411:9411
     networks:
       - pharma-net
+
 networks:
+  postgres-net:
+    driver: bridge
   pharma-net:
     driver: bridge
 volumes:
-  postgres:
-  pgadmin:
+  pharma-db:
+  pgadmin-auth:
