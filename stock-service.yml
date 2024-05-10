@@ -10,7 +10,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     show-sql: true
 
 logging:
@@ -22,9 +22,6 @@ logging:
           descriptor:
             sql: TRACE
 
-application:
-  database:
-    insert-dev-values: true
   client:
     authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoiXCJzdG9jay1zZXJ2aWNlXCIiLCJyb2xlIjoiU0VSVklDRSIsImlhdCI6MTcxNTI2Nzg5Nn0.KiQcFHAmucMY_NUEOtsoaZHCjrdzgHhG1rcIr_fktvI
 
