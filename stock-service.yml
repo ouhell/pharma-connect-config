@@ -4,9 +4,9 @@ spring:
 
   datasource:
     #    url: jdbc:postgresql://ep-late-wind-a23u4s1y.eu-central-1.aws.neon.tech/pharma-connect-stock?user=pharma-connect-stock_owner&password=rN27OJYSBazK&sslmode=require
-    username: stock-admin
-    password: stock-password
-    url: jdbc:postgresql://localhost:5440/stock
+    username: admin
+    password: password
+    url: jdbc:postgresql://localhost:5432/stock
 
   jpa:
     hibernate:

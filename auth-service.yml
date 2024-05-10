@@ -2,9 +2,9 @@ spring:
   application:
     name: pharma-connect-auth
   datasource:
-    password: auth-password
-    username: auth-admin
-    url: jdbc:postgresql://localhost:5430/postgres
+    password: password
+    username: admin
+    url: jdbc:postgresql://localhost:5432/auth
 
   jpa:
     show-sql: true
