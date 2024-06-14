@@ -1,10 +1,10 @@
 spring:
   application:
     name: pharma-connect-auth
-  datasource:
-    password: password
-    username: admin
-    url: jdbc:postgresql://192.168.1.9:5432/auth
+  # datasource:
+  #   password: password
+  #   username: admin
+  #   url: jdbc:postgresql://192.168.1.9:5432/auth
   jpa:
     hibernate:
       ddl-auto: validate
