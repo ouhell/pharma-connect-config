@@ -2,29 +2,39 @@ spring:
   application:
     name: pharma-connect-stock-service
 
-  datasource:
-    #    url: jdbc:postgresql://ep-late-wind-a23u4s1y.eu-central-1.aws.neon.tech/pharma-connect-stock?user=pharma-connect-stock_owner&password=rN27OJYSBazK&sslmode=require
-    username: admin
-    password: password
-    url: jdbc:postgresql://localhost:5432/stock
+  # datasource:
+  #   #    url: jdbc:postgresql://ep-late-wind-a23u4s1y.eu-central-1.aws.neon.tech/pharma-connect-stock?user=pharma-connect-stock_owner&password=rN27OJYSBazK&sslmode=require
+  #   username: admin
+  #   password: password
+  #   url: jdbc:postgresql://192.168.1.9:5432/stock
 
-  jpa:
-    show-sql: true
+  # jpa:
+  #   show-sql: true
+  #   hibernate:
+  #     ddl-auto: validate
 
 logging:
   level:
     org:
+      springframework.web: "debug"
+      springframework:
+        web:
+          servlet:
+            mvc:
+              method:
+                annotation=DEBUG:
       hibernate:
         sql: DEBUG
         type:
           descriptor:
             sql: TRACE
-
 application:
   database:
     insert-dev-values: true
+  jwt:
+    secret: PxgfrbwwEfYXAf26-tZxhbXfez0ycDWhkPuOdmYGTqU
   client:
-    authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoiXCJzdG9jay1zZXJ2aWNlXCIiLCJyb2xlIjoiU0VSVklDRSIsImlhdCI6MTcxNTI2Nzg5Nn0.KiQcFHAmucMY_NUEOtsoaZHCjrdzgHhG1rcIr_fktvI
+    authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoic3RvY2siLCJyb2xlIjoiU0VSVklDRSIsInRva2VuVHlwZSI6IkFDQ0VTUyIsImlhdCI6MTcxNzQyMTUzNH0.NSJPVTdMSZb5FnYO90RkRmWLPzYrjQsb10CQSYcYFKs
 
 # Actuator
 management:
@@ -47,3 +57,6 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8090
