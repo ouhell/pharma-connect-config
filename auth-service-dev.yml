@@ -10,8 +10,6 @@ jwt:
   secret_key: PxgfrbwwEfYXAf26-tZxhbXfez0ycDWhkPuOdmYGTqU
   issuer: PharmaConnect
   expire_duration: 48
-server:
-  port: 8070
 
 # Eureka
 eureka:
