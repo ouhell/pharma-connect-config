@@ -49,7 +49,7 @@ services:
       - registery
       - config
     environment:
-      -SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=docker
 
   stock:
     image: codebaker404/stock
@@ -63,7 +63,7 @@ services:
       - registery
       - config
     environment:
-      -SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=docker
 
   config:
     image: codebaker404/config
@@ -75,7 +75,7 @@ services:
     depends_on:
       - registery
 
-   gateway:
+  gateway:
     image: codebaker404/gateaway
     container_name: gateaway
     ports:
@@ -85,7 +85,7 @@ services:
     depends_on:
       - registery  
     environment:
-      -SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=docker
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
