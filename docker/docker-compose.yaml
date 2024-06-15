@@ -1,5 +1,6 @@
 name: pharma-connect-compose
-version: "1"
+version: "3.8"  # Updated version
+
 services:
   postgres:
     container_name: pharma-db
@@ -21,7 +22,7 @@ services:
     networks:
       - postgres-net
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pdadmin.org}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: "False"
     volumes:
@@ -35,7 +36,7 @@ services:
     ports:
       - 8761:8761
     networks:
-      - pharma-net
+      - micro-services
 
   auth:
     image: codebaker404/auth
@@ -43,13 +44,14 @@ services:
     ports:
       - 8070:8070
     networks:
-      - pharma-net
+      - micro-services
       - postgres-net
     depends_on:
       - registery
       - config
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registery:8761/eureka
 
   stock:
     image: codebaker404/stock
@@ -57,7 +59,7 @@ services:
     ports:
       - 8090:8090
     networks:
-      - pharma-net
+      - micro-services
       - postgres-net
     depends_on:
       - registery
@@ -65,15 +67,19 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
+
   config:
     image: codebaker404/config
     container_name: config
     ports:
       - 9000:9000
     networks:
-      - pharma-net
+      - micro-services
     depends_on:
       - registery
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
 
   gateway:
     image: codebaker404/gateaway
@@ -81,24 +87,27 @@ services:
     ports:
       - 8080:8080
     networks:
-      - pharma-net
+      - micro-services
     depends_on:
-      - registery  
+      - registery
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+
+
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
     ports:
       - 9411:9411
     networks:
-      - pharma-net
+      - micro-services
 
 networks:
   postgres-net:
     driver: bridge
-  pharma-net:
+  micro-services:
     driver: bridge
+
 volumes:
   pharma-db:
   pgadmin-auth:
