@@ -14,7 +14,7 @@ services:
       PGDATA: /data/postgres
     ports:
       - "5432:5432"
-    restart: unless-stopped
+
   pgadmin:
     container_name: db-admin
     image: dpage/pgadmin4
@@ -28,7 +28,64 @@ services:
       - pgadmin-auth:/var/lib/pgadmin-auth
     ports:
       - "5050:80"
-    restart: unless-stopped
+
+  registery:
+    image: codebaker404/registery
+    container_name: registery
+    ports:
+      - 8761:8761
+    networks:
+      - pharma-net
+
+  auth:
+    image: codebaker404/auth
+    container_name: auth
+    ports:
+      - 8070:8070
+    networks:
+      - pharma-net
+      - postgres-net
+    depends_on:
+      - registery
+      - config
+    environment:
+      -SPRING_PROFILES_ACTIVE=docker
+
+  stock:
+    image: codebaker404/stock
+    container_name: stock
+    ports:
+      - 8090:8090
+    networks:
+      - pharma-net
+      - postgres-net
+    depends_on:
+      - registery
+      - config
+    environment:
+      -SPRING_PROFILES_ACTIVE=docker
+
+  config:
+    image: codebaker404/config
+    container_name: config
+    ports:
+      - 9000:9000
+    networks:
+      - pharma-net
+    depends_on:
+      - registery
+
+   gateway:
+    image: codebaker404/gateaway
+    container_name: gateaway
+    ports:
+      - 8080:8080
+    networks:
+      - pharma-net
+    depends_on:
+      - registery  
+    environment:
+      -SPRING_PROFILES_ACTIVE=docker
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
