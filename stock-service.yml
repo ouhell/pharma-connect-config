@@ -27,6 +27,9 @@ application:
 
 # Actuator
 management:
+  zipkin:
+    tracing:
+      endpoint: http://192.168.1.9:9411/api/v2/spans
   endpoints:
     web:
       exposure:
