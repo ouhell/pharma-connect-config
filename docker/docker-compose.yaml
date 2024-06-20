@@ -39,7 +39,7 @@ services:
       - micro-services
 
   auth:
-    image: codebaker404/auth
+    image: codebaker404/ph-auth
     container_name: auth
     ports:
       - 8070:8070
@@ -49,9 +49,9 @@ services:
     depends_on:
       - registery
       - config
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registery:8761/eureka
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+
 
   stock:
     image: codebaker404/stock
@@ -64,8 +64,8 @@ services:
     depends_on:
       - registery
       - config
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
 
 
   config:
@@ -77,12 +77,12 @@ services:
       - micro-services
     depends_on:
       - registery
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
 
 
-  gateway:
-    image: codebaker404/gateaway
+  gateaway:
+    image: codebaker404/ph-gateaway
     container_name: gateaway
     ports:
       - 8080:8080
