@@ -54,7 +54,7 @@ services:
 
 
   stock:
-    image: codebaker404/stock
+    image: codebaker404/ph-stock
     container_name: stock
     ports:
       - 8090:8090
@@ -64,8 +64,8 @@ services:
     depends_on:
       - registery
       - config
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
 
 
   config:
