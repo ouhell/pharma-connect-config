@@ -49,8 +49,8 @@ services:
     depends_on:
       - registery
       - config
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
 
 
   stock:
