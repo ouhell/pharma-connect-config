@@ -1,6 +1,12 @@
 spring:
   application:
-    name: pharma-connect-stock-service
+    name: pharma_connect_payment
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 
 logging:
   level:
@@ -17,19 +23,19 @@ logging:
         type:
           descriptor:
             sql: TRACE
+
 application:
-  database:
-    insert-dev-values: true
   jwt:
     secret: PxgfrbwwEfYXAf26-tZxhbXfez0ycDWhkPuOdmYGTqU
-  client:
-    authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoic3RvY2siLCJyb2xlIjoiU0VSVklDRSIsInRva2VuVHlwZSI6IkFDQ0VTUyIsImlhdCI6MTcxNzQyMTUzNH0.NSJPVTdMSZb5FnYO90RkRmWLPzYrjQsb10CQSYcYFKs
+    server:
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoicGFpeW1lbnQiLCJyb2xlIjoiU0VSVklDRSIsInRva2VuVHlwZSI6IkFDQ0VTUyIsImlhdCI6MTcxNzg0NjYyNX0.w89B1qHWyuj5gQdHeTcM99hU7H8Mk1D9-y8slby9mvQ
+
 
 # Actuator
 management:
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: http://192.168.1.9:9411/api/v2/spans
   endpoints:
     web:
       exposure:
