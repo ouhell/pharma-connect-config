@@ -30,3 +30,16 @@ application:
     server:
       token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoicGFpeW1lbnQiLCJyb2xlIjoiU0VSVklDRSIsInRva2VuVHlwZSI6IkFDQ0VTUyIsImlhdCI6MTcxNzg0NjYyNX0.w89B1qHWyuj5gQdHeTcM99hU7H8Mk1D9-y8slby9mvQ
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      stockBreaker:
+        register-health-indicator: true
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state:
+          seconds: 10
+        failure-rate-threshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        sliding-window-type: count_based

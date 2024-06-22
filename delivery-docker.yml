@@ -38,3 +38,16 @@ eureka:
     service-url:
       defaultZone: http://registery:8761/eureka
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      stockBreaker:
+        register-health-indicator: true
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state:
+          seconds: 10
+        failure-rate-threshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        sliding-window-type: count_based

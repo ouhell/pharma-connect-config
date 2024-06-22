@@ -10,7 +10,7 @@ application:
   jwt:
     secret: PxgfrbwwEfYXAf26-tZxhbXfez0ycDWhkPuOdmYGTqU
     server:
-      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoiXCJzdG9jay1zZXJ2aWNlXCIiLCJyb2xlIjoiU0VSVklDRSIsImlhdCI6MTcxNTI2Nzg5Nn0.KiQcFHAmucMY_NUEOtsoaZHCjrdzgHhG1rcIr_fktvI
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQaGFybWFDb25uZWN0Iiwic3ViIjoiZGVsaXZlcnkiLCJyb2xlIjoiU0VSVklDRSIsInRva2VuVHlwZSI6IkFDQ0VTUyIsImlhdCI6MTcxOTA4MzA2MH0.sNOPfoRKOvLtWetDgOOPsvAo1sn0DXsDQoQhHFNFp_A
 
 
 # Actuator
@@ -38,3 +38,16 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      stockBreaker:
+        register-health-indicator: true
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state:
+          seconds: 10
+        failure-rate-threshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        sliding-window-type: count_based
