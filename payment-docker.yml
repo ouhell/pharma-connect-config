@@ -1,6 +1,13 @@
 spring:
   application:
     name: pharma_connect_payment
+  datasource:
+    url: jdbc:postgresql://postgres:5432/payment
+    password: password
+    username: admin
+  jpa:
+    hibernate:
+      ddl-auto: validate
 eureka:
   client:
     fetch-registry: true
