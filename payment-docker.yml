@@ -1,6 +1,6 @@
 spring:
   application:
-    name: pharma_connect_payment
+    name: pharma-connect-payment
   datasource:
     url: jdbc:postgresql://postgres:5432/payment
     password: password
