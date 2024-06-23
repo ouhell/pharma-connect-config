@@ -35,8 +35,8 @@ spring:
           filters:
             - RewritePath=/delivery-service/(?<path>.*), /$\{path}
 
-        - id: PHARMA-CONNECT-PAYMENT-SERVICE
-          uri: lb://PHARMA-CONNECT-PAYMENT-SERVICE
+        - id: PHARMA-CONNECT-PAYMENT
+          uri: lb://PHARMA-CONNECT-PAYMENT
           predicates:
             - Path=/payment-service/**
           filters:
